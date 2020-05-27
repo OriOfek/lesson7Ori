@@ -11,16 +11,21 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
+import android.R.color;
+
 
 public class MainActivity extends AppCompatActivity {
 
+    RadioButton[] array;
+    int RadiButton;
     LinearLayout screen;
     Switch s;
     RadioGroup rg;
     RadioButton rb1,rb2,rb3,rb4;
     boolean isPressed;
     Boolean mode;
-    Color []colores;
+    int []colors;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +37,11 @@ public class MainActivity extends AppCompatActivity {
         rb4 = (RadioButton) findViewById(R.id.rb4);
         s = (Switch) findViewById(R.id.switch1);
         screen = (LinearLayout) findViewById(R.id.screen);
-        //colores = {Color.GREEN, Color.BLUE, Color.RED, Color.YELLOW};
+        array = new RadioButton[]{rb1, rb2, rb3, rb4};
+
+        colors= new int[]{color.holo_blue_bright, color.holo_orange_dark, color.holo_red_light, color.holo_green_dark};
     }
+
 
     public void changeMode(View view) {
         mode = !mode;
@@ -41,9 +49,21 @@ public class MainActivity extends AppCompatActivity {
 
     public void isCliced(View view) {
         isPressed = true;
-        if (mode)
+        if (s.isChecked())
         {
-
+            getWindow().getDecorView().setBackgroundColor(Color.BLUE);
         }
+    }
+
+    public int findIndex(RadioButton[] rd)
+    {
+        for (int i = 0;i < rd.length;i++)
+        {
+            if (rd[i].isChecked())
+            {
+                return i;
+            }
+        }
+        return 0;
     }
 }
