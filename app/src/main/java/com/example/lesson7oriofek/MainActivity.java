@@ -13,6 +13,8 @@ import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.R.color;
 
+import java.util.Arrays;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,31 +41,22 @@ public class MainActivity extends AppCompatActivity {
         screen = (LinearLayout) findViewById(R.id.screen);
         array = new RadioButton[]{rb1, rb2, rb3, rb4};
 
-        colors= new int[]{color.holo_blue_bright, color.holo_orange_dark, color.holo_red_light, color.holo_green_dark};
-    }
-
-
-    public void changeMode(View view) {
-        mode = !mode;
+        colors= new int[]{Color.BLUE, Color.YELLOW, Color.RED, Color.GREEN};
     }
 
     public void isCliced(View view) {
         isPressed = true;
         if (s.isChecked())
         {
-            getWindow().getDecorView().setBackgroundColor(colors[findIndex(array)]);
+            getWindow().getDecorView().setBackgroundColor(colors[Arrays.asList(array).indexOf((RadioButton)findViewById(rg.getCheckedRadioButtonId()))]);
         }
     }
 
-    public int findIndex(RadioButton[] rd)
-    {
-        for (int i = 0;i < rd.length;i++)
+
+    public void change(View view) {
+        if (isPressed)
         {
-            if (rd[i].isChecked())
-            {
-                return i;
-            }
+            getWindow().getDecorView().setBackgroundColor(colors[Arrays.asList(array).indexOf((RadioButton)findViewById(rg.getCheckedRadioButtonId()))]);
         }
-        return 0;
     }
 }
