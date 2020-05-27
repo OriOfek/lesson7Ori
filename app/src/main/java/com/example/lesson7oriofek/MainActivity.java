@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         isPressed = true;
         if (s.isChecked())
         {
-            getWindow().getDecorView().setBackgroundColor(Color.BLUE);
+            getWindow().getDecorView().setBackgroundColor(colors[findIndex(array)]);
         }
     }
 
