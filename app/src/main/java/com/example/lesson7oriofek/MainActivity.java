@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.R.color;
+import android.widget.Toast;
 
 import java.util.Arrays;
 
@@ -54,9 +55,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void change(View view) {
-        if (isPressed)
+        if(s.isChecked())
         {
-            getWindow().getDecorView().setBackgroundColor(colors[Arrays.asList(array).indexOf((RadioButton)findViewById(rg.getCheckedRadioButtonId()))]);
+            Toast.makeText(getApplicationContext(), "button is not use in this function", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            if (isPressed)
+            {
+                getWindow().getDecorView().setBackgroundColor(colors[Arrays.asList(array).indexOf((RadioButton) findViewById(rg.getCheckedRadioButtonId()))]);
+            }
+            else
+            {
+                Toast.makeText(getApplicationContext(), "you need to press on radio button", Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
