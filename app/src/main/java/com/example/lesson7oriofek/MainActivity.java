@@ -19,14 +19,12 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    RadioButton[] array;
-    int RadiButton;
-    LinearLayout screen;
+    int[] array;
     Switch s;
+    LinearLayout screen;
     RadioGroup rg;
     RadioButton rb1,rb2,rb3,rb4;
     boolean isPressed;
-    Boolean mode;
     int []colors;
 
     @Override
@@ -34,13 +32,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         rg = (RadioGroup) findViewById(R.id.rg);
-        rb1 = (RadioButton) findViewById(R.id.rb1);
-        rb2 = (RadioButton) findViewById(R.id.rb2);
-        rb3 = (RadioButton) findViewById(R.id.rb3);
-        rb4 = (RadioButton) findViewById(R.id.rb4);
         s = (Switch) findViewById(R.id.switch1);
         screen = (LinearLayout) findViewById(R.id.screen);
-        array = new RadioButton[]{rb1, rb2, rb3, rb4};
+        array = new int[]{R.id.rb1, R.id.rb2, R.id.rb3, R.id.rb4};
+
 
         colors= new int[]{Color.BLUE, Color.YELLOW, Color.RED, Color.GREEN};
     }
@@ -49,11 +44,21 @@ public class MainActivity extends AppCompatActivity {
         isPressed = true;
         if (s.isChecked())
         {
-            getWindow().getDecorView().setBackgroundColor(colors[Arrays.asList(array).indexOf((RadioButton)findViewById(rg.getCheckedRadioButtonId()))]);
+            screen.setBackgroundColor(colors[getIndex(array,rg.getCheckedRadioButtonId())]);
         }
     }
 
-
+    public  int getIndex(int[] array,int indexToFind)
+    {
+        for (int i = 0;i < array.length;i++)
+        {
+            if(array[i] == indexToFind)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
     public void change(View view) {
         if(s.isChecked())
         {
@@ -63,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         {
             if (isPressed)
             {
-                getWindow().getDecorView().setBackgroundColor(colors[Arrays.asList(array).indexOf((RadioButton) findViewById(rg.getCheckedRadioButtonId()))]);
+                screen.setBackgroundColor(colors[getIndex(array,rg.getCheckedRadioButtonId())]);
             }
             else
             {
