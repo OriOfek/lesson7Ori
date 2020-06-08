@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     Switch s;
     LinearLayout screen;
     RadioGroup rg;
-    RadioButton rb1,rb2,rb3,rb4;
     boolean isPressed;
     int []colors;
 
@@ -34,9 +33,8 @@ public class MainActivity extends AppCompatActivity {
         rg = (RadioGroup) findViewById(R.id.rg);
         s = (Switch) findViewById(R.id.switch1);
         screen = (LinearLayout) findViewById(R.id.screen);
+
         array = new int[]{R.id.rb1, R.id.rb2, R.id.rb3, R.id.rb4};
-
-
         colors= new int[]{Color.BLUE, Color.YELLOW, Color.RED, Color.GREEN};
     }
 
